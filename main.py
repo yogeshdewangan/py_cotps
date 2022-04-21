@@ -55,16 +55,20 @@ def start():
                 log.info("Wallet balance is more than 5. So it will continue buying crypto")
                 driver.find_element(by=By.CLASS_NAME, value="orderBtn").click()
                 log.info("Order button clicked")
-                time.sleep(5)
+                time.sleep(7)
 
                 xpath_sell_button = "/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[7]/uni-view/uni-view/uni-view[6]/uni-button[2]"
                 driver.find_element(by=By.XPATH, value=xpath_sell_button).click()
                 log.info("Sell button clicked")
-                time.sleep(3)
+                time.sleep(7)
+                try:
+                    xpath_confirm_button = "/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[8]/uni-view/uni-view/uni-button"
+                    driver.find_element(by=By.XPATH, value=xpath_confirm_button).click()
+                    log.info("Confirm button clicked")
+                    time.sleep(6)
+                except Exception as e:
+                    log.info(str(e))
 
-                xpath_confirm_button = "/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[8]/uni-view/uni-view/uni-button"
-                driver.find_element(by=By.XPATH, value=xpath_confirm_button).click()
-                time.sleep(3)
 
                 total_transactions +=1
                 log.info("Total transactions : " + str(total_transactions))
@@ -82,7 +86,7 @@ def start():
 
 
         except Exception as e:
-            print(e)
+            log.info(str(e))
 
 
 def login(driver, phone_number, password):
