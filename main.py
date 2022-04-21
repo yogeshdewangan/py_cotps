@@ -13,7 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 portal = getconfig.props["portal"]
 phone_number = getconfig.props["phone_number"]
 password = getconfig.props["password"]
-wait_for_next_cycle_hour = getconfig.props["wait_for_next_cycle_hour"]
+wait_for_next_cycle_hour = int(getconfig.props["wait_for_next_cycle_hour"])
 
 log.info("portal: " + portal)
 log.info("phone_number: " + str(phone_number))
@@ -76,8 +76,9 @@ def start():
                 driver.refresh()
 
             else:
-                time.sleep(wait_for_next_cycle_hour/3 *3600)
-                log.info("Waiting for : " + str(wait_for_next_cycle_hour) + " hour(s)")
+                sleep_time = 3600
+                time.sleep(sleep_time)
+                log.info("Waiting for : " + str(sleep_time) + " seconds")
                 driver.refresh()
                 continue
 
@@ -110,6 +111,7 @@ def login(driver, phone_number, password):
     time.sleep(1)
     driver.find_element(by=By.CLASS_NAME, value="login").click()
     time.sleep(5)
+    log.info("Login succeeded")
 
 
 if __name__ == '__main__':
