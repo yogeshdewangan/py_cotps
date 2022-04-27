@@ -34,7 +34,8 @@ def start():
 
     # login(driver, phone_number, password)
     total_transactions = 0
-    for i in range(0, 500):
+    i=0
+    while True:
         log.info("Loop count: " + str(i))
 
         try:
@@ -90,6 +91,11 @@ def start():
 
         except Exception as e:
             log.info(str(e))
+            driver.quit()
+            start()
+
+        i=i+1
+
 
 
 def login(driver, phone_number, password):
