@@ -76,9 +76,11 @@ def start():
                 driver.refresh()
 
             else:
-                sleep_time = 3600
-                time.sleep(sleep_time)
+                sleep_time = 900
                 log.info("Waiting for : " + str(sleep_time) + " seconds")
+                
+                time.sleep(sleep_time)
+                
                 driver.refresh()
                 continue
 
